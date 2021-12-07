@@ -1,5 +1,9 @@
 setwd("C:/Users/mingr/OneDrive/Documents/GitHub/R/proj-12062021")
+#set write directory
+#这里要改成你自己文件夹的路径
+
 dir()
+
 inp = read.csv('proj-en.csv')
 
 library(ggplot2)
@@ -8,7 +12,7 @@ library(ggplot2)
 p <- ggplot(data = inp, aes(x=Ln_Res, 
                             y=Ln_GDP))
 
-p <- p + geom_point(colour='red', alpha=4, size=3.5)
+p <- p + geom_point(colour='red', alpha=4, size=1.5)
 
 p <- p+ geom_text(label=paste(inp$Region, sep = ''), 
                   colour = 'black')
@@ -21,11 +25,16 @@ p <- p + labs(x = "Ln(residential population)",
               y = "Ln(GDP per captia)")
 
 p <- p + theme_bw()
+#背景涂白
 p <- p + theme(panel.grid.major = element_blank(),
                 panel.grid.minor = element_blank())
+#把格子变白
 
 p <- p + theme(panel.border = element_blank())
+#去掉边框
+
 p <- p + theme(axis.line = element_line())
+#增加x，y轴的线
 
 p
 
