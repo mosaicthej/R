@@ -4,8 +4,6 @@ inp = read.csv('proj-en.csv')
 
 library(ggplot2)
 
-q <- ggplot(data = inp, aes(x=Residential_Population, 
-                            y=GDP_per_captia))
 
 p <- ggplot(data = inp, aes(x=Ln_Res, 
                             y=Ln_GDP))
@@ -32,12 +30,32 @@ p <- p + theme(axis.line = element_line())
 p
 
 
-q <- q + geom_point(colour='red', alpha=4, size=3.5)
 
-q <- q+ geom_text(label=paste(inp$Region, sep = ''), 
+inp_cn = read.csv('proj-cn.csv',
+                  encoding = 'UTF-8',
+                  stringsAsFactors = TRUE)
+
+q <- ggplot(data = inp, aes(x=Ln_Res, 
+                            y=Ln_GDP))
+
+q <- q + geom_point(colour='red', alpha=4, size=1.5)
+
+q <- q+ geom_text(label=paste(inp_cn$X.U.FEFF.地区, sep = ''), 
                   colour = 'black')
 
 q <- q+geom_smooth(method = lm, se=FALSE, 
                    fullrange = TRUE,
                    size = 1, colour = 'red')
 
+
+q <- q + labs(x = "Ln(常住人口)",
+              y = "Ln(人均GDP)")
+
+q <- q + theme_bw()
+q <- q + theme(panel.grid.major = element_blank(),
+               panel.grid.minor = element_blank())
+
+q <- q + theme(panel.border = element_blank())
+q <- q + theme(axis.line = element_line())
+
+q
